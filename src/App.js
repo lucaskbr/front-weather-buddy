@@ -1,12 +1,9 @@
+import Routes from "./routes";
 
 
-function App() {
+const App =() =>  {
   return (
-    <div className="App">
-      <header className="App-header">
-
-      </header>
-    </div>
+    <Routes />
   );
 }
 
