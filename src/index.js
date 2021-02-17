@@ -1,10 +1,14 @@
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+import { Reset } from 'assets/global/Reset';
+
 ReactDOM.render(
   <React.StrictMode>
+    <Reset />
     <App />
   </React.StrictMode>,
   document.getElementById('root')
