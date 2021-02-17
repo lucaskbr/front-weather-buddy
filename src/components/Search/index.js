@@ -2,14 +2,13 @@ import React, { useEffect } from 'react';
 
 import { Container } from './styles';
 
-const Search = () => {
+const Search = (props) => {
 
-  
+  const { action, beSmall } = props
 
   useEffect(() => {
 
     const resizeInput = (input) => {
-      console.log()
       input.style.width = input.value.length + "ch";
     }
 
@@ -17,10 +16,8 @@ const Search = () => {
     // console.log(input)
     input.addEventListener('input', (e) => {
       const { target } = e;
-      target.style.width = target.value.length + "ch";
-    }, false); // bind the "resizeInput" callback on "input" event
-    // resizeInput.call(input); // immediately call the function
-  
+      target.style.width = target.value.length + 0.4 + "ch";
+    }, false);
 
     return () => {
       input.removeEventListener('input', resizeInput, false)
@@ -28,13 +25,26 @@ const Search = () => {
 
   }, []);
 
- 
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      action && action(e.target.value)
+    }
+  }
 
-
+  const handleBlur = (e) => {
+    action && action(e.target.value)
+  }
 
   return (
-  <Container>
-    <h3>How is the weather in <input id="city-weather-search" type="text"></input> now?</h3>
+  <Container small={beSmall}>
+    <h3>How is the weather in
+      <input
+        id="city-weather-search"
+        onBlur={handleBlur}
+        onKeyPress={handleKeyPress}
+        type="text"
+        {...props}
+      ></input> now?</h3>
   </Container>);
 }
 
